@@ -4,10 +4,13 @@ Rails.application.routes.draw do
 
     root to: 'public/homes#top'
     get 'about'=>'public/homes#about'
+
+    scope module: :public do
     resources :items, only: [:index,:show]
     resources :cart_items, only:[:index,:update,:destroy,:create]
     resources :orders,only:[:new,:create,:index,:show]
     resources :addresses
+    end
 
     get 'customers/my_page' =>'public/customers#show'
     get 'customers/information/edit'=>'public/customers#edit'
