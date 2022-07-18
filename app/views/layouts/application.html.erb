@@ -11,12 +11,16 @@
 
   <body>
 
-     <% if customer_signed_in? %>
+    <% if customer_signed_in? %>
       <li>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
       </li>
       <li>
         <%=link_to "my page",customers_my_page_path %>
+      </li>
+    <% elsif admin_signed_in? %>
+      <li>
+        <%= link_to "ログアウト", destroy_admin_session_path,method: :delete %>
       </li>
     <% else %>
       <li>
