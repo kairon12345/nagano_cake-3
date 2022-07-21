@@ -18,4 +18,7 @@ class ApplicationController < ActionController::Base
     :postal_code,:address,:telephone_number])
   end
 
+  def cart_item_params
+    params.require(:cart_item).permit(:item_id,:amount)
+  end
 end

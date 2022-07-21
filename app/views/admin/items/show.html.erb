@@ -1,0 +1,18 @@
+<h1><%= @item.name %></h1>
+<div>
+  <%=@item.image %>
+</div>
+
+<div>
+  <%= @item.name %>
+  <%= @item.prace %>
+  <%= @item.is_active %>
+</div>
+
+<div>
+  <p>数量を選択してください。</p>
+  <%= form_with model:@item ,local: true do |f| %>
+    <%= f.hidden_field :item_id, value: f.id %>
+    <%= f.select :amount, *[1..10] %>
+  <% end %>
+</div>

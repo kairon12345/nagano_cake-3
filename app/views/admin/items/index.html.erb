@@ -1,0 +1,10 @@
+<div>
+  <h1>商品一覧</h1>
+  <% @items.each do |f| %>
+    <div>
+      <%= f.image %>
+      <%=f.name %>
+      <%= f.price %>
+    </div>
+  <% end %>
+</div>

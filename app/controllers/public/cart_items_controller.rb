@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
 
   def index
+    @cart_item=Cart_item.cart_item_params[:item_id]
   end
 
   def update

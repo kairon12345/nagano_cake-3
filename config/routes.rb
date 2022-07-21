@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     resources :addresses
     end
 
+  namespace :admin do
+    resources :genres
+    resources :customers
+  end
+
     get 'customers/my_page' =>'public/customers#show'
     get 'customers/information/edit'=>'public/customers#edit'
     patch 'customers/information'=>'public/customers#update'
