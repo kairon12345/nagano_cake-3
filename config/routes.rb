@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :genres
-    resources :customers
+    resources :customers, only:[:index,:show,:edit,:update]
   end
 
     get 'customers/my_page' =>'public/customers#show'
