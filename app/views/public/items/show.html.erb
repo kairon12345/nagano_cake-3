@@ -1,3 +1,32 @@
-<%= form_with model:@item ,local: true do |f| %>
-  <%=f.hidden_field %>
-<%end%>
+<div>
+  <table>
+    <tbody>
+      <tr>
+        <th>ジャンル検索</th>
+      </tr>
+      <% @genres.each do |genre| %>
+        <tr>
+          <td>
+            <%= genre.name %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <% if @item.image.attached? %>
+      <%= image_tag @item.image %>
+    <% else %>
+      <%=  image_tag ("/default_user.jpg") %>
+    <% end %>
+  <%= @item.name %>
+  <%= @item.introduction %>
+</div>
+
+<%= form_with model: @cart_item,url: cart_items_path, method: :post, local: true do |f| %>
+  <%= f.hidden_field :item_id, value: @item.id %>
+  <%= f.select :amount, *[1..10] %>
+  <%= f.submit 'カートに入れる' %>
+<% end %>

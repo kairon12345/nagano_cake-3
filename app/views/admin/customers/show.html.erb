@@ -53,7 +53,11 @@
       <tr>
         <td><p>会員ステータス</p></td>
         <td>
-          <%= @customer.is_active %>
+          <% if @customer.is_active == "now" %>
+            <%=  '有効'   %>
+          <%else%>
+            <%=  '退会'  %>
+          <%end%>
         </td>
       </tr>
     </tbody>

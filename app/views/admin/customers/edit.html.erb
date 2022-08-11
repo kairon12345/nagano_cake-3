@@ -3,13 +3,15 @@
     <%=@customer.last_name %><%= @customer.first_name %>
     <p>さんの会員情報編集</p>
   </h1>
+</div>
+
+<%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
   <table>
     <tbody>
       <tr>
         <td><p>会員ID</p></td>
         <td><%=@customer.id%></td>
       </tr>
-      <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
       <tr>
         <td><%= f.label :last_name,'氏名' %></td>
         <td><%=f.text_field :last_name %></td>
@@ -37,11 +39,19 @@
         <td><%=f.text_field :email%></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td><%= f.label :is_active, "会員ステータス" %></td>
+        <td>
+          <%=f.label :is_active, "有効"%>
+          <%= f.radio_button :is_active, true %>
+          <%=f.label :is_active, "退会"%>
+          <%= f.radio_button :is_active, false %>
+        </td>
       </tr>
-      <%= f.submit '変更を保存' %>
-      <% end %>
+
+      <div>
+        <%= f.submit '変更を保存' %>
+      </div>
+
     </tbody>
   </table>
-</div>
+<% end %>

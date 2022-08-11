@@ -36,11 +36,19 @@
           <%= f.email %>
         </td>
         <td>
-          <%= f.is_active %>
+          <% if f.is_active == true %>
+            <%=  '有効'   %>
+          <%else%>
+            <%=  '退会'  %>
+          <%end%>
         </td>
       </tr>
     </tbody>
     <% end %>
 
   </table>
+</div>
+
+<div>
+  <%= paginate @customers %>
 </div>

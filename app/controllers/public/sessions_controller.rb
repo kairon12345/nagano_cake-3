@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
 
-   before_action :reject_user, only: [:create]
+  before_action :reject_user, only: [:create]
 
   def after_sign_in_path_for(resource)
     root_path
@@ -27,17 +27,15 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-   protected
+protected
 
   def reject_user
     @customer = Customer.find_by(email: params[:customer][:email])
     if @customer
-      if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
+      if (@customer.valid_password?(params[:customer][:password]) && (@customer.is_active == false))
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-        redirect_to new_customer_session_path
+        redirect_to new_customer_registration_path
       end
-    else
-        flash[:notice] = "項目を入力してください"
     end
   end
 

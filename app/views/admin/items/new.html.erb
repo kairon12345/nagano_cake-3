@@ -1,6 +1,12 @@
 <h1>商品新規登録</h1>
-<%= form_with model:@item do |f| %>
 
+<% if @item.errors.any? %>
+  <%= @item.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<%= form_with model:@item ,url: admin_items_path,local: true do |f| %>
 <table>
   <tbody>
     <tr>
@@ -17,15 +23,22 @@
     </tr>
     <tr>
       <td>ジャンル</td>
-      <td></td>
+      <td>
+        <%=f.select :genre_id, options_from_collection_for_select(Genre.all,:id,:name) %>
+      </td>
     </tr>
     <tr>
       <td>税抜価格</td>
-      <td></td>
+      <td><%= f.text_field :price %>円</td>
     </tr>
     <tr>
       <td>販売ステータス</td>
-      <td></td>
+      <td>
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active,'販売中',value: true %>
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active,'販売停止中',value: false %>
+      </td>
     </tr>
   </tbody>
 </table>

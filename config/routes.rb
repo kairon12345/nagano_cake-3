@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     registrations: 'public/registrations'
   }
 
+
+
     root to: 'public/homes#top'
     get 'about'=>'public/homes#about'
+    delete 'cart_items/destroy_all'=>'public/cart_items#destroy_all'
 
     scope module: :public do
     resources :items, only: [:index,:show]
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres
     resources :customers, only:[:index,:show,:edit,:update]
+    resources :items
   end
 
     get 'customers/my_page' =>'public/customers#show'
@@ -32,8 +36,6 @@ Rails.application.routes.draw do
     patch 'customers/information'=>'public/customers#update'
     get 'customers/unsubscript'=>'public/customers#unsubscript'
     patch 'customers/withdraw'=>'public/customers#withdraw'
-
-    delete 'cart_items/destroy_all'=>'public/cart_items#destroy_all'
 
     post 'orders/confirm'=>'public/orders#confirm'
     get 'orders/complete'=>'public/orders#complete'

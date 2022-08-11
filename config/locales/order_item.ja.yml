@@ -1,8 +1,0 @@
-ja:
-  enums:
-    order_item:
-      status:
-        unmanufacturable: '製作不可'
-        wait_production: '製作待ち'
-        in_production: '製作中'
-        production_completed: '製作完了'
